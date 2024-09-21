@@ -421,6 +421,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 27661094228598966, guid: 26cb2d577e12dd74391c7ae9e0327625, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 212348370b8234f4aa9e9be419ba0c79, type: 2}
     - target: {fileID: 2972970874541629668, guid: 26cb2d577e12dd74391c7ae9e0327625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4706087
@@ -522,6 +526,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 8837224503630484822, guid: 12e21d5d1d846b446b0a0a53e89a84dc, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837224503630484822, guid: 12e21d5d1d846b446b0a0a53e89a84dc, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f940b748c6d66c348b29a0bf5c09118f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
