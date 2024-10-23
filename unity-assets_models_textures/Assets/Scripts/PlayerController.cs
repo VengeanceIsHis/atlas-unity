@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool grounded;
     private Rigidbody rb;
+    private float speed = 2f;
+    [SerializeField] Transform cam;
 
     // Start is called before the first frame update
     void Start()
@@ -16,22 +19,41 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // WASD buttons enabled
+        float direction_x = Input.GetAxis("Horizontal") * speed;
+        float direction_z = Input.GetAxis("Vertical") * speed;
+        
+        //camera dir
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
 
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDir = (direction_x * camRight + direction_z * camForward).normalized;
+
+        rb.velocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
+
+        grounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            float jumpforce = Mathf.Sqrt(-8f * Physics.gravity.y);
+            rb.velocity = new Vector3(rb.velocity.x, jumpforce, rb.velocity.z);
+        }
+
+
+        if (rb.position.y < -5f)
+        {
+            transform.position = new Vector3(0, 100, 0);
+        }
     }
 
     private void FixedUpdate()
     {
-        // WASD buttons enabled
-        float direction_x = Input.GetAxis("Horizontal");
-        float direction_z = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(direction_x, 0.0f, direction_z).normalized;
-
-        rb.AddForce(movement * 25);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(0, 200, 0);
-        }
+        
     }
 }
