@@ -1384,15 +1384,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -440
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613299520080261769, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
