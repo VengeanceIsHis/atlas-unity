@@ -1384,11 +1384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1396,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115189589949304846, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 360
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 7613299520080261769, guid: b9262972e4e59b84180f3dd254d65734, type: 3}
       propertyPath: m_enableWordWrapping
