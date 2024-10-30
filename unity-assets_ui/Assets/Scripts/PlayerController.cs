@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private Rigidbody rb;
     private float speed = 5f;
+    private float sprint = 40f;
     [SerializeField] Transform cam;
 
     // Start is called before the first frame update
@@ -35,7 +36,14 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDir = (direction_x * camRight + direction_z * camForward).normalized;
 
-        rb.velocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rb.velocity = new Vector3(moveDir.x * sprint, rb.velocity.y, moveDir.z * sprint);
+        }
+        else
+        {
+            rb.velocity = new Vector3(moveDir.x, rb.velocity.y, moveDir.z);
+        }
 
         grounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
 
@@ -44,6 +52,9 @@ public class PlayerController : MonoBehaviour
             float jumpforce = Mathf.Sqrt(-64f * Physics.gravity.y);
             rb.velocity = new Vector3(rb.velocity.x, jumpforce, rb.velocity.z);
         }
+
+        
+
 
 
         if (rb.position.y < -5f)
