@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Select
+  m_text: LEVEL SELECT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ab2c8cf883a58b49bc0c7f1a5b1b41e, type: 2}
   m_sharedMaterial: {fileID: 7752162532393624786, guid: 5ab2c8cf883a58b49bc0c7f1a5b1b41e, type: 2}
