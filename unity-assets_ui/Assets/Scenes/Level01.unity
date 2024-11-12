@@ -2171,6 +2171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7041405888058260749, guid: dc5a4e067021c7748bec2a06e7912273, type: 3}
+      propertyPath: m_text
+      value: Next
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
