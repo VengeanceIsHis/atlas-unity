@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private static CameraController instance;
+    public bool isInverted = false;
+    
     private float mouseSensitivity = 3f;
     private float rotationY;
     private float rotationX;
@@ -20,17 +23,55 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float smooth = 0.2f;
 
+
+    private void Awake()
+    {
+        // Ensures there's only one instance of the CameraController
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
+        else
+        {
+            instance = this;
+            // Persist across scenes
+        }
+    }
+
+
+    public void ToggleInversion(bool value)
+    {
+        isInverted = value;
+    }
+
     void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
+        
     }
     // Update is called once per frame
     void Update()
     {
+
+
         float MouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float MouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationY += MouseX;
-        rotationX -= MouseY;
+    
+
+        if (isInverted == true)
+        {
+            rotationX += MouseY;
+        }
+        else
+        {
+            rotationX -= MouseY;
+        }
+        
+
+
+
 
         rotationX = Mathf.Clamp(rotationX, -40, 40);
 
@@ -39,6 +80,25 @@ public class CameraController : MonoBehaviour
 
         transform.localEulerAngles = currentRotation;
 
-        transform.position = Target.position - transform.forward * distance;
+        if (Target != null)
+        {
+            transform.position = Target.position - transform.forward * distance;
+        }
+    }
+
+    // Public property to access the instance
+    public static CameraController Instance
+    {
+        get
+        {
+            // If the instance hasn't been created yet, try to find it in the scene
+            if (instance == null)
+            {
+                instance = FindObjectOfType<CameraController>();
+                
+         
+            }
+            return instance;
+        }
     }
 }

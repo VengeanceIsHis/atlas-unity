@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private bool grounded;
@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private float speed = 5f;
     private float sprint = 40f;
     [SerializeField] Transform cam;
+    public Scene currentscene;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         rb = GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour
         // WASD buttons enabled
         float direction_x = Input.GetAxis("Horizontal") * speed;
         float direction_z = Input.GetAxis("Vertical") * speed;
-        
+
         //camera dir
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
@@ -53,18 +55,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, jumpforce, rb.velocity.z);
         }
 
-        
-
-
-
         if (rb.position.y < -5f)
         {
             transform.position = new Vector3(0, 100, 0);
         }
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 }
