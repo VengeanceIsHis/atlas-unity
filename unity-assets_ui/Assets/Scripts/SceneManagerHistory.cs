@@ -9,7 +9,7 @@ public class SceneManagerHistory : MonoBehaviour
     public static SceneManagerHistory Instance;
 
     // Stack to track the scene history
-    private Stack<string> sceneHistory = new Stack<string>();
+    public Stack<string> sceneHistory = new Stack<string>();
 
     void Awake()
     {
@@ -40,13 +40,12 @@ public class SceneManagerHistory : MonoBehaviour
         // Load the new scene
         SceneManager.LoadScene(sceneName);
     }
-
+   
     public void GoBackToPreviousScene()
     {
-        if (sceneHistory.Count > 1)  // Ensure there's a previous scene
+        if (sceneHistory.Count > 0)  // Ensure there's a previous scene
         {
             // Pop the current scene off the stack
-            sceneHistory.Pop();
 
             // Get the previous scene and load it
             string previousScene = sceneHistory.Peek();

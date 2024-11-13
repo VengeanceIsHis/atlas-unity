@@ -5,13 +5,15 @@ using TMPro;
 
 public class WinTrigger : MonoBehaviour
 {
-    public Timer timerScript;
+    public GameObject player;
+    private Timer Timer;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI Win;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        Timer = player.GetComponent<Timer>();
+;   }
 
 
     private void OnTriggerEnter(Collider other)
@@ -20,10 +22,12 @@ public class WinTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            if (timerScript != null)
+            if (Timer != null)
             {
-                timerScript.enabled = false;
+                Timer.enabled = false;
                 text.color = Color.green;
+                string time = text.text;
+
             }
         }
     }

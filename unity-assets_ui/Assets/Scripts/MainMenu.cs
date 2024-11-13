@@ -60,12 +60,20 @@ public class MainMenu : MonoBehaviour
     }
     public void LevelSelect(int level)
     {
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
         string result = "Level0" + level.ToString();
-        SceneManager.LoadScene(result);
+        SceneManagerHistory.Instance.LoadScene(result);
     }
 
     public void Options()
     {
-        SceneManager.LoadScene("Options");
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
+        SceneManagerHistory.Instance.LoadScene("Options");
     }
 }

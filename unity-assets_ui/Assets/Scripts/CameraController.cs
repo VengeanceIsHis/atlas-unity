@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private static CameraController instance;
     public bool isInverted = false;
     
     private float mouseSensitivity = 3f;
@@ -24,26 +23,6 @@ public class CameraController : MonoBehaviour
     private float smooth = 0.2f;
 
 
-    private void Awake()
-    {
-        // Ensures there's only one instance of the CameraController
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject); // Destroy duplicate instances
-        }
-        else
-        {
-            instance = this;
-            // Persist across scenes
-        }
-    }
-
-
-    public void ToggleInversion(bool value)
-    {
-        isInverted = value;
-    }
-
     void Start()
     {
 
@@ -58,8 +37,15 @@ public class CameraController : MonoBehaviour
         float MouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float MouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
         rotationY += MouseX;
-    
 
+        if (GameManager.Instance.Inverted == true)
+        {
+            isInverted = true;
+        }
+        else
+        {
+            isInverted = false;
+        }
         if (isInverted == true)
         {
             rotationX += MouseY;
@@ -86,19 +72,5 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    // Public property to access the instance
-    public static CameraController Instance
-    {
-        get
-        {
-            // If the instance hasn't been created yet, try to find it in the scene
-            if (instance == null)
-            {
-                instance = FindObjectOfType<CameraController>();
-                
-         
-            }
-            return instance;
-        }
-    }
+    
 }

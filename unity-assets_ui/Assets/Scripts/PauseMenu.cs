@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+
     public Canvas Menu;
     public Button button1;
     public Button button2;
@@ -29,22 +30,41 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
         Time.timeScale = 1;
         Menu.gameObject.SetActive(false);
     }
 
     public void Restart()
     {
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
         Scene current = SceneManager.GetActiveScene();
         SceneManagerHistory.Instance.LoadScene(current.name);
     }
     public void MainMenu()
     {
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
         SceneManagerHistory.Instance.LoadScene("MainMenu");
     }
     public void Options()
     {
-        
+        foreach (var scene in SceneManagerHistory.Instance.sceneHistory)
+        {
+            Debug.Log(scene);
+        }
+        if (GameManager.Instance.Inverted == true)
+        {
+            Debug.Log("true");
+        }
         SceneManagerHistory.Instance.LoadScene("Options");
     }
     // Update is called once per frame

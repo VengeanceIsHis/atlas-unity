@@ -55,10 +55,32 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, jumpforce, rb.velocity.z);
         }
 
-        if (rb.position.y < -5f)
+
+
+        switch (SceneManager.GetActiveScene().name)
         {
-            transform.position = new Vector3(0, 100, 0);
+            case "Level01":
+                if (rb.position.y < -5f)
+                {
+                    transform.position = new Vector3(0, 100, 0);
+                }
+                break;
+            case "Level02":
+                if (rb.position.y < -5f)
+                {
+                    transform.position = new Vector3(0, 100, 0);
+                }
+                break;
+            case "Level03":
+                if (rb.position.y < -100f)
+                {
+                    transform.position = new Vector3(0, 100, 0);
+                }
+                break;
+            default:
+                break;
         }
+        
     }
 
 }
