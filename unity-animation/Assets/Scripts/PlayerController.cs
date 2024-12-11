@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     private float sprint = 40f;
     [SerializeField] Transform cam;
     public Scene currentscene;
-    private bool IsRunning;
+    private bool IsRunning = false;
+    private bool IsJumping = false;
+    private bool IsFalling = false;
+    private bool IsRestarted = false;
     public float rotationSpeed = 700f;
 
     // Start is called before the first frame update
@@ -35,9 +38,19 @@ public class PlayerController : MonoBehaviour
 
         // Check if the player is running
         IsRunning = Mathf.Abs(direction_x) > 0 || Mathf.Abs(direction_z) > 0;
-
+        
         // Update animator based on running state
         animator.SetBool("IsRunning", IsRunning);
+
+        // Update animator based on Space
+        IsJumping = Input.GetKey(KeyCode.Space);
+        animator.SetBool("IsJumping", IsJumping);
+
+
+       
+
+        // Update the Animator parameter to reflect the falling state
+       
 
         // Get camera direction for movement (flattened to ignore y-axis)
         Vector3 camForward = cam.transform.forward;
@@ -56,12 +69,15 @@ public class PlayerController : MonoBehaviour
         // Apply sprinting speed if LeftShift is held
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            IsJumping = true;
             rb.velocity = new Vector3(moveDir.x * sprint, rb.velocity.y, moveDir.z * sprint);
         }
         else
         {
+            IsJumping = false;
             rb.velocity = new Vector3(moveDir.x * speed, rb.velocity.y, moveDir.z * speed);
         }
+        
 
         // Handle rotation to face the movement direction
         if (moveDir.magnitude > 0f) // Check if there is movement input
@@ -90,24 +106,72 @@ public class PlayerController : MonoBehaviour
             case "Level01":
                 if (rb.position.y < -5f)
                 {
+                    IsFalling = true;
                     transform.position = new Vector3(0, 100, 0);
+                    if (rb.position.y == 3f)
+                    {
+                        IsRestarted = true;
+                    }
+                    else
+                    {
+                        IsRestarted = false;
+                    }
+                    animator.SetBool("IsRestarted", IsRestarted);
                 }
+                else
+                {
+                    IsFalling = false;
+                }
+                animator.SetBool("IsFalling", IsFalling);
+                
                 break;
             case "Level02":
                 if (rb.position.y < -5f)
                 {
+                    IsFalling = true;
                     transform.position = new Vector3(0, 100, 0);
+                    if (rb.position.y == 3f)
+                    {
+                        IsRestarted = true;
+                    }
+                    else
+                    {
+                        IsRestarted = false;
+                    }
+                    animator.SetBool("IsRestarted", IsRestarted);
                 }
+                else
+                {
+                    IsFalling = false;
+                }
+                animator.SetBool("IsFalling", IsFalling);
                 break;
             case "Level03":
                 if (rb.position.y < -100f)
                 {
+                    IsFalling = true;
                     transform.position = new Vector3(0, 100, 0);
+                    if (rb.position.y <= 3f)
+                    {
+                        IsRestarted = true;
+                    }
+                    else
+                    {
+                        IsRestarted = false;
+                    }
+                    animator.SetBool("IsRestarted", IsRestarted);
+                    
                 }
+                else
+                {
+                    IsFalling = false;
+                }
+                animator.SetBool("IsFalling", IsFalling);
                 break;
             default:
                 break;
         }
+        
     }
-
+    
 }
